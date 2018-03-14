@@ -1,4 +1,4 @@
-package gos;
+package animal;
 
 import java.util.ArrayList;
 
