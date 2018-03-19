@@ -2,7 +2,7 @@ package animal;
 
 import java.util.ArrayList;
 
-public class Gos extends Animal{
+public class Gos extends Animal implements Cloneable{
 	
 	private String raza;
 	private int amistat;
@@ -27,15 +27,22 @@ public class Gos extends Animal{
 		atk = 0;
 		def = 0;
 		spd = 0;
+		sexo = 'm';
+		this.posibilidadDeCopularConElSexoOpuesto=true;
 		raza = "mezcla";
 		colores = new ArrayList<>();
 		colores.add("invisible");
 		amistat = -100;
 		
+		ADN = (int) ((Math.random()*900000000)+100000000);
+		
+		Granja gj = Granja.get();
+		gj.add(this);
+		
 		
 	}
 	
-public Gos(String nom, int edat, int lvl, String raza, int amistat) {
+public Gos(String nom, int edat, int lvl, String raza, int amistat, char sexo, boolean p) {
 		
 		this.nom = nom;
 		this.edat = edat;
@@ -48,10 +55,15 @@ public Gos(String nom, int edat, int lvl, String raza, int amistat) {
 		for(int i=0;i<lvl;i++) {
 			lvlup();
 		}
-		
+		this.sexo=sexo;
+		this.posibilidadDeCopularConElSexoOpuesto=p;
 		colores = new ArrayList<>();
 		colores.add("invisible");
 		this.amistat = amistat;
+		ADN = (int) ((Math.random()*900000000)+100000000);
+		
+		Granja gj = Granja.get();
+		gj.add(this);
 		
 		
 	}
@@ -63,7 +75,7 @@ public Gos(String nom, int edat, int lvl, String raza, int amistat) {
 //	
 	public void sonido(int i) {
 		for (int j = 0; j < i; j++) {
-			System.out.println("guau guau");
+			System.out.println(this+" dice guau guau");
 			atk--;
 		}
 	}
@@ -127,7 +139,8 @@ public Gos(String nom, int edat, int lvl, String raza, int amistat) {
 	@Override
 	public void sonido() {
 		// TODO Auto-generated method stub
-		System.out.println("guau guau");
+		System.out.println(this+" dice guau guau");
+
 	}
 
 }

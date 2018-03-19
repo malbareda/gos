@@ -8,8 +8,8 @@ public class Polimorfia {
 	public static void main(String[] args) {
 		ArrayList<Animal> granja = new ArrayList<Animal>();
 		
-		Gos perraco = new Gos("John Cobra",10,100,"rotweiler",100);
-		Gos pipo = new Gos("Pipo",10,3,"mezcla",100);
+		Gos perraco = new Gos("John Cobra",10,100,"rotweiler",100,'m',true);
+		Gos pipo = new Gos("Pipo",10,3,"mezcla",100,'m',true);
 		Ganso donald = new Ganso();
 		
 		granja.add(perraco);

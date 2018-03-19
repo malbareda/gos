@@ -18,6 +18,10 @@ public class Ganso extends Animal {
 		raza = "aznar";
 		colores = new ArrayList<>();
 		colores.add("blanco");
+		ADN = (int) ((Math.random()*900000000)+100000000);
+		Granja gj = Granja.get();
+		gj.add(this);
+		
 
 	}
 
@@ -47,7 +51,7 @@ public class Ganso extends Animal {
 	@Override
 	public void sonido() {
 		// TODO Auto-generated method stub
-		System.out.println("cuak cuak");
+		System.out.println(this+" dice: cuak cuak");
 	}
 
 //	public void graznar() {
@@ -58,7 +62,7 @@ public class Ganso extends Animal {
 //	public void sonido() {
 //		System.out.println("cuak cuak");
 //	}
-	
+
 	
 
 }
