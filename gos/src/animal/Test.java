@@ -1,9 +1,19 @@
 package animal;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 public class Test {
 
 	public static void main(String[] args) {
 		Gos perrito = new Gos();
+		
+		Tortuga trachemys = new Tortuga();
+		
+		trachemys.sonido();
+		
 		System.out.println(perrito.getNom());
 		
 		perrito.sonido();
@@ -45,6 +55,8 @@ public class Test {
 		gj.add(fill);
 		
 		
+		Collections.sort(gj);
+		
 		for(Animal a : gj ) {
 			System.out.println("El ADN DE "+a.nom+" ES "+a.ADN);
 		}
@@ -53,6 +65,42 @@ public class Test {
 		
 		
 		perraco.mossega(pipo);
+		
+		
+		Mapache iceta = new Mapache();
+		
+		iceta.sonido();
+		
+		iceta.defecate();
+		perraco.mossega(iceta);
+		
+		iceta.sonido();
+		
+		
+		ArrayList<Animal> l = new ArrayList<Animal>();
+		
+		
+		l.add(pipo);
+		l.add(perraco);
+		l.add(donald);
+		l.add(iceta);
+		l.add(pipa);
+		l.add(fill);
+		
+		Collections.sort(l);
+		
+		
+		System.out.println(l);
+		
+		Animal[] al = new Animal[3];
+		al[0]=pipo;
+		al[1]=donald;
+		al[2]=iceta;
+		
+		//Arrays.sort(al);
+		
+		
+		System.out.println("Es pipo mejor que iceta? La respuesta es : "+pipo.compareTo(iceta));
 		
 		
 		

@@ -48,11 +48,13 @@ public class Ganso extends Animal {
 		return raza;
 	}
 
+
 	@Override
 	public void sonido() {
 		// TODO Auto-generated method stub
 		System.out.println(this+" dice: cuak cuak");
 	}
+	
 
 //	public void graznar() {
 //		System.out.println("cuak cuak");

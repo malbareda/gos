@@ -2,7 +2,7 @@ package animal;
 
 import java.util.ArrayList;
 
-public abstract class Animal {
+public abstract class Animal implements Comparable<Animal>{
 
 	protected String nom;
 	char sexo;
@@ -15,8 +15,7 @@ public abstract class Animal {
 	protected int def;
 	protected int spd;
 	protected int ADN;
-	
-	
+
 	public String getNom() {
 		return nom;
 	}
@@ -52,102 +51,109 @@ public abstract class Animal {
 	public int getSpd() {
 		return spd;
 	}
-	
-	
-	
+
 	public abstract void sonido();
-	
+
 	public Animal ligar(Animal a) {
 
-		if(a.getClass().equals(this.getClass())) {
-			if(a.posibilidadDeCopularConElSexoOpuesto==true&&this.posibilidadDeCopularConElSexoOpuesto==true) {
-				if(a.sexo!=this.sexo) {
-					System.out.println("Vaya, mientras cuidabamos a "+this.getNom()+" y "+a.getNom()+" ha aparecido un huevo de la1 nada!");
+		if (a.getClass().equals(this.getClass())) {
+			if (a.posibilidadDeCopularConElSexoOpuesto == true && this.posibilidadDeCopularConElSexoOpuesto == true) {
+				if (a.sexo != this.sexo) {
+					System.out.println("Vaya, mientras cuidabamos a " + this.getNom() + " y " + a.getNom()
+							+ " ha aparecido un huevo de la1 nada!");
 					try {
 						Animal fill = (Animal) this.clone();
-						
-						fill.edat=0;
-						int sx = (int)(Math.random()*2);
-						if (sx==0) fill.sexo='f';
-						else fill.sexo='m';
-						if(fill.sexo==this.sexo) fill.nom=this.getNom()+" Jr.";
-						else fill.nom=a.getNom()+" Jr.";
-						fill.lvl=1;
-						int sx2 = (int)(Math.random()*10);
-						if (sx2==9) fill.posibilidadDeCopularConElSexoOpuesto=false;
-						else fill.posibilidadDeCopularConElSexoOpuesto=true;
-						
-						
-						///Extraccion de Digitos
-						
-						String s1,s2;
-						s1=this.ADN+"";
-						s2=a.ADN+"";
+
+						fill.edat = 0;
+						int sx = (int) (Math.random() * 2);
+						if (sx == 0)
+							fill.sexo = 'f';
+						else
+							fill.sexo = 'm';
+						if (fill.sexo == this.sexo)
+							fill.nom = this.getNom() + " Jr.";
+						else
+							fill.nom = a.getNom() + " Jr.";
+						fill.lvl = 1;
+						int sx2 = (int) (Math.random() * 10);
+						if (sx2 == 9)
+							fill.posibilidadDeCopularConElSexoOpuesto = false;
+						else
+							fill.posibilidadDeCopularConElSexoOpuesto = true;
+
+						/// Extraccion de Digitos
+
+						String s1, s2;
+						s1 = this.ADN + "";
+						s2 = a.ADN + "";
 						String sfill = "";
-						for(int i = 0; i<s1.length();i++) {
-							int rand = (int)(Math.random()*2);
-							if(rand==0) {
-								sfill=sfill+s1.charAt(i);
-							}else {
-								sfill=sfill+s2.charAt(i);
+						for (int i = 0; i < s1.length(); i++) {
+							int rand = (int) (Math.random() * 2);
+							if (rand == 0) {
+								sfill = sfill + s1.charAt(i);
+							} else {
+								sfill = sfill + s2.charAt(i);
 							}
-							
-						}fill.ADN=Integer.parseInt(sfill);
-						
-						int adnp=this.ADN;
-						int adnm=a.ADN;
-						int adnfill=0;
-						for(int i =0;i<s1.length();i++) {
-							int rand = (int)(Math.random()*2);
-							if(rand==0) {
-								adnfill+=adnp%10;
-								adnp/=10;
-								adnm/=10;
-								adnfill*=10;
-								
-								///12345
-							}else {
-								adnfill+=adnm%10;
-								adnp/=10;
-								adnm/=10;
-								adnfill*=10;
+
+						}
+						fill.ADN = Integer.parseInt(sfill);
+
+						int adnp = this.ADN;
+						int adnm = a.ADN;
+						int adnfill = 0;
+						for (int i = 0; i < s1.length(); i++) {
+							int rand = (int) (Math.random() * 2);
+							if (rand == 0) {
+								adnfill += adnp % 10;
+								adnp /= 10;
+								adnm /= 10;
+								adnfill *= 10;
+
+								/// 12345
+							} else {
+								adnfill += adnm % 10;
+								adnp /= 10;
+								adnm /= 10;
+								adnfill *= 10;
 							}
 						}
-						
-						
-						
+
 						return fill;
 					} catch (CloneNotSupportedException e) {
 						e.printStackTrace();
 					}
-					
+
 				}
 			}
 		}
 		return null;
-		
+
 	}
-	
+
 	public Caca defecate() {
 		
 		if(this.getClass().equals(Ganso.class)) {
 			return new Caca(20,"beige",false);
-		}else {
-			Gos g = (Gos) this;
-			String raza = g.getRaza();
-			switch(raza) {
-			case "rotweiler":
-				return new Caca(500,"negro",false);
-			case "chihuahua":
-				return new Caca(5,"marron",true);
-			case "mezcla":
-				return new Caca(100,"marron",false);				
-			}
+		}else if (this.getClass().equals(Gos.class)) {
+				Gos g = (Gos) this;
+				String raza = g.getRaza();
+				switch (raza) {
+				case "rotweiler":
+					return new Caca(500, "negro", false);
+				case "chihuahua":
+					return new Caca(5, "marron", true);
+				case "mezcla":
+					return new Caca(100, "marron", false);
+				}
+			
+		
+		}else if(this instanceof Mapache) {
+			return new Caca(50,"rosa",true);
 		}
 		return new Caca(100,"marron",false);
+
 	}
-	
-	
+
 	protected void die() {
 
 		// TODO Auto-generated method stub
@@ -161,10 +167,17 @@ public abstract class Animal {
 		
 		
 	}
+
+	
+	public int compareTo(Animal a) {
+		
+		return -(this.atk - a.atk);
+		
+	}	
 	
 	
 	public String toString() {
 		return this.nom;
-		
+
 	}
 }
