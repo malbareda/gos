@@ -15,13 +15,32 @@ public abstract class Animal implements Comparable<Animal>{
 	protected int def;
 	protected int spd;
 	protected int ADN;
+	int estado;  //0 vivo 1 muerto 
+	
+	
+	public Animal(){
+		this.nom = "Null";
+		sexo = 'm';
+		edat = 0;
+		lvl = 0;
+		hp = 10;
+		atk = 1;
+		def = 1;
+		spd = 1;
+		ADN = 100000002;
+		ArrayList<Animal> gj = Granja.get();
+		gj.add(this);
+		estado = 0;
+	}
 
 	public String getNom() {
 		return nom;
 	}
 
 	public void setNom(String nom) {
-		this.nom = nom;
+		if (estado==1) {
+			this.nom = nom;
+		}
 	}
 
 	public int getEdat() {
@@ -54,8 +73,14 @@ public abstract class Animal implements Comparable<Animal>{
 
 	public abstract void sonido();
 
-	public Animal ligar(Animal a) {
-
+	public Animal ligar(Animal a) throws NecromancyException, NecrophiliaException {
+		if(estado==1) {
+			throw new NecromancyException();
+		}
+		if(a.estado==1) {
+			throw new NecrophiliaException();
+		}
+		
 		if (a.getClass().equals(this.getClass())) {
 			if (a.posibilidadDeCopularConElSexoOpuesto == true && this.posibilidadDeCopularConElSexoOpuesto == true) {
 				if (a.sexo != this.sexo) {
@@ -153,16 +178,36 @@ public abstract class Animal implements Comparable<Animal>{
 		return new Caca(100,"marron",false);
 
 	}
+	
+	
+	public void atacar(Animal animal) throws NecromancyException {
+		//if(amistat > 0) {
+			System.out.println(nom+" ha mossegat "+atk+" vegades a "+animal.nom);
+			int dany = this.atk-animal.def;
+			if(dany>0)animal.hp-=dany;
+			System.out.println(animal.nom+" ha rebut "+dany+" dany. ");
+			if(animal.hp<=0) animal.die();
+		//}else {
+			//System.out.println(nom+" t'ha mossegat "+atk+" vegades");
+		//}
+		
+	}
+	
 
-	protected void die() {
-
-		// TODO Auto-generated method stub
-		System.out.println(nom+" muere.");
-		try {
-			this.finalize();
-		} catch (Throwable e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+	protected void die() throws NecromancyException {
+		
+		if (estado!=1) {
+			// TODO Auto-generated method stub
+			System.out.println(nom + " muere.");
+			try {
+				this.finalize();
+			} catch (Throwable e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} 
+			estado =1;
+		}else {
+			throw new NecromancyException();
 		}
 		
 		
@@ -170,8 +215,11 @@ public abstract class Animal implements Comparable<Animal>{
 
 	
 	public int compareTo(Animal a) {
-		
+		//compareTo, devuelve negativo si la compracion 
+		//da this<a, 0 si this==a, y positivo si this>a
 		return -(this.atk - a.atk);
+		//el negativo delante es porque en vez de mas pequeño
+		//a mas grande, queremos ordenar de grande a pequeño
 		
 	}	
 	

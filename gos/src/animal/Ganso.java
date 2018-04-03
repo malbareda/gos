@@ -7,14 +7,8 @@ public class Ganso extends Animal {
 	private String raza;
 
 	public Ganso() {
-
+		super();
 		nom = "Trump";
-		edat = 0;
-		lvl = 0;
-		hp = 0;
-		atk = 0;
-		def = 0;
-		spd = 0;
 		raza = "aznar";
 		colores = new ArrayList<>();
 		colores.add("blanco");
@@ -26,14 +20,10 @@ public class Ganso extends Animal {
 	}
 
 	public Ganso(String nom, int edat, String raza, int amistat) {
-
+		super();
 		this.nom = nom;
 		this.edat = edat;
 		this.lvl = 100;
-		hp = 0;
-		atk = 0;
-		def = 0;
-		spd = 0;
 		this.raza = raza;
 		// for(int i=0;i<lvl;i++) {
 		// lvlup();

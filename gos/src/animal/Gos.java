@@ -20,13 +20,8 @@ public class Gos extends Animal implements Cloneable{
 
 	public Gos() {
 		
-		nom = "Eh tu vete, no, fuera, no, no, perrito bueno";
-		edat = 0;
-		lvl = 0;
-		hp = 0;
-		atk = 0;
-		def = 0;
-		spd = 0;
+		super();
+		nom = "gofrillos";
 		sexo = 'm';
 		this.posibilidadDeCopularConElSexoOpuesto=true;
 		raza = "mezcla";
@@ -43,14 +38,9 @@ public class Gos extends Animal implements Cloneable{
 	}
 	
 public Gos(String nom, int edat, int lvl, String raza, int amistat, char sexo, boolean p) {
-		
+		super();
 		this.nom = nom;
-		this.edat = edat;
-		this.lvl = 0;
-		hp = 0;
-		atk = 0;
-		def = 0;
-		spd = 0;
+		this.edat = edat;		
 		this.raza = raza;
 		for(int i=0;i<lvl;i++) {
 			lvlup();
@@ -90,19 +80,7 @@ public Gos(String nom, int edat, int lvl, String raza, int amistat, char sexo, b
 		
 	}
 	
-	
-	public void mossega(Animal animal) {
-		if(amistat > 0) {
-			System.out.println(nom+" ha mossegat "+atk+" vegades a "+animal.nom);
-			int dany = this.atk-animal.def;
-			if(dany>0)animal.hp-=dany;
-			System.out.println(animal.nom+" ha rebut "+dany+" dany. ");
-			if(animal.hp<=0) animal.die();
-		}else {
-			System.out.println(nom+" t'ha mossegat "+atk+" vegades");
-		}
-		
-	}
+
 	
 	
 	

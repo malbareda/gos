@@ -3,9 +3,7 @@ package animal;
 public class Mapache extends Animal {
 
 	public Mapache() {
-		this.hp=10;
-		this.def=1;
-		this.edat=1;
+		super();
 		this.nom="Miquel Iceta";
 		
 	}
